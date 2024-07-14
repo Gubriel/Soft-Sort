@@ -52,7 +52,7 @@
                                     <p><strong>Quantidade em estoque:</strong> {{ $card->qntd }}</p>
                                     <form method="POST" action="{{ route('cards.increment', ['card' => $card->id]) }}">
                                         @csrf
-                                        <button type="submit" class="bg-gray-500 hover:bg-blue-700 text-black font-bold px-2 rounded">+</button>
+                                        <button type="submit" class="bg-gray-500 hover:bg-green-700 text-black font-bold px-2 rounded">+</button>
                                     </form>
                                     <form method="POST" action="{{ route('cards.decrement', ['card' => $card->id]) }}">
                                         @csrf
@@ -64,8 +64,8 @@
                             <div>
                                 <x-dropdown>
                                     <x-slot name="trigger">
-                                        <button class="rounded-lg w-72 hover:bg-slate-500 h-10">
-                                            <span>Editar</span>
+                                        <button class="rounded-b-lg  w-72 h-8 hover:bg-gray-500 opacity-40">
+                                            <span>☰</span>
                                         </button>
                                     </x-slot>
                                     <x-slot name="content">

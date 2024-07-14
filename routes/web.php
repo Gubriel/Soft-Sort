@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cards/{card}/edit/{quadro_id}', [CardsController::class, 'edit'])->name('cards.edit');
     Route::patch('/cards/{card}/edit/{quadro_id}', [CardsController::class, 'update'])->name('cards.update');
     Route::post('/cards/{card}/increment', [CardsController::class, 'increment'])->name('cards.increment');
-    Route::post('/cards/{card}/decrement', [CardsController::class, 'decrement'])->name('cards.decrement');
+Route::post('/cards/{card}/decrement', [CardsController::class, 'decrement'])->name('cards.decrement');
     Route::delete('/cards/delete/{card}', [CardsController::class,'destroy'])->name('cards.destroy');
     //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
