@@ -8,6 +8,10 @@
                     <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="nome" id="nome" placeholder="Nome do novo card" required>
                     <input type="hidden" name="posicao" id="posicao" value="1">
                 </div>
+                <label class="pl-3 pt-3">Tipo:</label>
+                <div class="py-2">
+                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="tipo" id="tipo" placeholder="Tipo" required>
+                </div>
                 <label class="pl-3 pt-3">Quantidade:</label>
                 <div class="py-2">
                     <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="qntd" id="qntd" placeholder="Quantidade atual" required>
@@ -16,19 +20,17 @@
                 <div class="py-2">
                     <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="qntd_limite" id="qntd_limite" placeholder="Quantidade crítica" required>
                 </div>
-                <label class="pl-3 pt-3">Tipo:</label>
+                <label class="pl-3 pt-4">Tamanho:</label>
+                <label class="pl-24 pt-4">Cor:</label>
                 <div class="py-2">
-                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="tipo" id="tipo" placeholder="Tipo" required>
-                </div>
-                <label class="pl-3 pt-3">Tamanho:</label>
-                <div class="py-2">
-                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="tamanho" id="tamanho" placeholder="Tamanho" required>
-                </div>
-                <div>
-                    <label class="pl-3 pt-3" for="cor">Escolha uma cor:</label>
-                    <div class="pl-3 pt-3">
-                        <input class="w-10 h-10" type="color" id="cor" name="cor" value="#62A0EA">
-                    </div>
+                    <input class="h-10 w-20 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="tamanho" id="tamanho" required>
+                    <select class="border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" id="unidade" name="unidade">
+                        <option value="mm">mm</option>
+                        <option value="cm">cm</option>
+                        <option value="m">M</option>
+                        <option value="pol">Pol (")</option>
+                    </select>
+                    <input class="w-8 h-4 shadow-lg rounded-sm" type="color" id="cor" name="cor" value="#62A0EA">
                 </div>
             </div>
             <div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cards;
 use App\Models\Coluna;
+use App\Models\quadros;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -28,10 +29,9 @@ class CardsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $coluna_id)
+    public function store(Request $request, quadros $quadro)
     {
         $request->validate([
-
             'coluna_id' => 'required',
             'nome' => 'required',
             'tipo' => 'required',
@@ -54,7 +54,7 @@ class CardsController extends Controller
         $ncard->qntd_limite = $request->input('qntd_limite');
         $ncard->posicao = $request->input('posicao');
         $ncard->save();
-        return redirect()->route('quadros.show');
+        return redirect()->route('quadros.show', [$quadro->id]);
     }
 
     /**
@@ -76,9 +76,10 @@ class CardsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cards $card): RedirectResponse
+    public function update(Request $request, Cards $card, quadros $quadro): RedirectResponse
     {
         $ncard = Cards::find($card->id);
+        $ncard->coluna_id = $request->input('coluna_id');
         $ncard->nome = $request->input('nome');
         $ncard->tipo = $request->input('tipo');
         $ncard->tamanho = $request->input('tamanho');
@@ -88,18 +89,16 @@ class CardsController extends Controller
         $ncard->qntd_limite = $request->input('qntd_limite');
         $ncard->posicao = $request->input('posicao');
         $ncard->save();
-        $quadroId = $request->input('coluna_id');
 
-        return redirect()->route('quadros.show', [$quadroId]);
+        return redirect()->route('quadros.show', [$quadro->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cards $card, Coluna $coluna): RedirectResponse
+    public function destroy(Cards $card, quadros $quadro): RedirectResponse
     {
         $card->delete();
-        $quadroId = $coluna->quadro_id;
-        return redirect()->route('quadros.show', [$quadroId])->with('success','Coluna Deletada com Sucesso!');
+        return redirect()->route('quadros.show', [$quadro->id]);
     }
 }

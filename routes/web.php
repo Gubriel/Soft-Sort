@@ -17,7 +17,6 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
-
     //Quadros
     Route::get('/quadros', [QuadrosController::class,'index'])->name('quadros.index');
     Route::get('/quadros/create', [QuadrosController::class, 'create'])->name('quadros.create');
@@ -34,11 +33,11 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/colunas/{coluna}/edit', [ColunasController::class, 'update'])->name('colunas.update');
     Route::delete('/colunas/delete/{coluna}', [ColunasController::class,'destroy'])->name('colunas.destroy');
     // Cards
+    Route::get('/cards/create/{coluna_id}', [CardsController::class, 'create'])->name('cards.create');
+    Route::post('/cards/create/{coluna_id}', [CardsController::class, 'store'])->name('cards.store');
     Route::get('/cards/{card}/edit', [CardsController::class, 'edit'])->name('cards.edit');
     Route::patch('/cards/{card}/edit', [CardsController::class, 'update'])->name('cards.update');
     Route::delete('/cards/delete/{card}', [CardsController::class,'destroy'])->name('cards.destroy');
-    Route::get('/cards/create/{coluna_id}', [CardsController::class, 'create'])->name('cards.create');
-    Route::post('/cards/create/{coluna_id}', [CardsController::class, 'store'])->name('cards.store');
     //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'logout'])->name('profile.logout');

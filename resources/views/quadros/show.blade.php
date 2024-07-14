@@ -8,7 +8,7 @@
         <div class="mt-6 flex overflow-x-clip justify-center max-w-9xl">
             @foreach($colunas as $coluna)
             <div class="mr-10 flex">
-                <div class="flex flex-col max-h-10 p-2 justify-center">
+                <div class="flex-col max-h-10 p-2 justify-center">
                     <div class="rounded-lg w-72 hover:bg-blue-500 bg-white flex items-center justify-center">
                         <div class="pt-2 pb-2 flex-col justify-end">
                             <x-dropdown>
@@ -38,30 +38,52 @@
                         </div>
                     </div>
                     @foreach($cards as $card)
+                    @if($card->coluna_id == $coluna->id)
                     <div class="mt-3 w-auto h-screen">
-                        <div class="w-auto h-80 rounded-lg" style="background-color: {{$card->cor}}" draggable="true">
-                            <div class="text-center font-bold p-2">
+                        <div class="h-72 rounded-lg border-gray-300" style="background-color: {{$card->cor}}" draggable="true">
+                            <div class="text-center font-extrabold p-2">
                                 <span>{{ $card->nome }}</span>
                             </div>
                             <div class="overflow-y rounded-lg m-2" style="background-color: {{ $card->cor }}">
-                                <p>Descrição: {{ $card->descricao }}</p>
-                                <p>Tamanho: {{ $card->tamanho }}</p>
-                                <p>Categoria: {{ $card->tipo }}</p>
-                                <p>Quantidade em estoque: {{ $card->qntd }}</p>
-                                <p>Quantidade Critíca: {{ $card->qntd_limite }}</p>
-                                <button class="rounded-lg w-72 max-h-10"
-                                    type="submit"
-                                    onclick="window.location.href='{{ route('cards.edit', $card->id) }}'">
-                                    Editar Card
-                                </button>
+                                <p><strong>Descrição:</strong> {{ $card->descricao }}</p>
+                                <p><strong>Tamanho:</strong> {{ $card->tamanho }}</p>
+                                <p><strong>Categoria:</strong> {{ $card->tipo }}</p>
+                                <p><strong>Quantidade em estoque:</strong> {{ $card->qntd }}</p>
+                                <p><strong>Quantidade Critíca:</strong> {{ $card->qntd_limite }}</p>
+                            </div>
+                            <div>
+                                <x-dropdown>
+                                    <x-slot name="trigger">
+                                        <button class="rounded-lg w-72 hover:bg-slate-500 h-10">
+                                            <span>Editar</span>
+                                        </button>
+                                    </x-slot>
+                                    <x-slot name="content">
+                                        @csrf
+                                        <x-dropdown-link :href="route('cards.edit', $card->id)">
+                                            {{ __('Editar') }}
+                                        </x-dropdown-link>
+                                        <form method="POST" action="{{ route('cards.destroy', ['card' => $coluna->id]) }}">
+                                            @csrf
+                                            @method('delete')
+                                            <x-dropdown-link :href="route('cards.destroy', ['card' => $card->id])"
+                                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                                {{ __('Excluir') }}
+                                            </x-dropdown-link>
+                                        </form>
+                                    </x-slot>
+                                </x-dropdown>
                             </div>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
             @endforeach
-            <button class="rounded-lg w-72 max-h-10 p-2 hover:bg-blue-500 bg-white" type="submit" onclick="window.location.href='{{ route('colunas.create', ['quadro_id' => $quadro->id]) }}'">Adicionar Coluna +</button>
-        </div>
+            <div class="pt-2">
+                <button class="rounded-lg w-72 max-h-10 p-2 hover:bg-blue-500 bg-white" type="submit" onclick="window.location.href='{{ route('colunas.create', ['quadro_id' => $quadro->id]) }}'">Adicionar Coluna +</button>
+            </div>
+            </div>
     </div>
 </x-app-layout>
