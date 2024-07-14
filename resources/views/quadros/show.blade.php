@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="p-4 sm:p-6 lg:p-8">
-        <div class="mt-6 flex overflow-x-clip justify-center max-w-9xl">
+        <div class="mt-6 flex justify-center max-w-9xl">
             @foreach($colunas as $coluna)
             <div class="mr-10 flex">
                 <div class="flex-col max-h-10 p-2 justify-center">
@@ -14,7 +14,7 @@
                             <x-dropdown>
                                 <x-slot name="trigger">
                                     <button>
-                                        <span>{{ $coluna->nome }}</span>
+                                        <span title="{{ $coluna->descricao }}">{{ $coluna->nome }}</span>
                                     </button>
                                 </x-slot>
                                 <x-slot name="content">
@@ -39,16 +39,26 @@
                     </div>
                     @foreach($cards as $card)
                     @if($card->coluna_id == $coluna->id)
-                    <div class="mt-3 w-auto h-screen">
-                        <div class="h-72 rounded-lg border-gray-300" style="background-color: {{$card->cor}}" draggable="true">
+                    <div class="mt-3">
+                        <div class="rounded-lg w-72 border-gray-300" style="background-color: {{$card->cor}}" draggable="true">
                             <div class="text-center font-extrabold p-2">
                                 <span>{{ $card->nome }}</span>
                             </div>
-                            <div class="overflow-y rounded-lg m-2" style="background-color: {{ $card->cor }}">
+                            <div class="rounded-lg m-2" style="background-color: {{ $card->cor }}">
                                 <p><strong>Descrição:</strong> {{ $card->descricao }}</p>
                                 <p><strong>Tamanho:</strong> {{ $card->tamanho }}</p>
                                 <p><strong>Categoria:</strong> {{ $card->tipo }}</p>
-                                <p><strong>Quantidade em estoque:</strong> {{ $card->qntd }}</p>
+                                <div class="flex justify-between">
+                                    <p><strong>Quantidade em estoque:</strong> {{ $card->qntd }}</p>
+                                    <form method="POST" action="{{ route('cards.increment', ['card' => $card->id]) }}">
+                                        @csrf
+                                        <button type="submit" class="bg-gray-500 hover:bg-blue-700 text-black font-bold px-2 rounded">+</button>
+                                    </form>
+                                    <form method="POST" action="{{ route('cards.decrement', ['card' => $card->id]) }}">
+                                        @csrf
+                                        <button type="submit" class=" bg-gray-500 hover:bg-red-700 text-black font-bold px-2 rounded">-</button>
+                                    </form>
+                                </div>
                                 <p><strong>Quantidade Critíca:</strong> {{ $card->qntd_limite }}</p>
                             </div>
                             <div>
@@ -60,10 +70,10 @@
                                     </x-slot>
                                     <x-slot name="content">
                                         @csrf
-                                        <x-dropdown-link :href="route('cards.edit', $card->id)">
+                                        <x-dropdown-link :href="route('cards.edit', ['card' => $card->id, 'quadro_id' => $quadro->id])">
                                             {{ __('Editar') }}
                                         </x-dropdown-link>
-                                        <form method="POST" action="{{ route('cards.destroy', ['card' => $coluna->id]) }}">
+                                        <form method="POST" action="{{ route('cards.destroy', ['card' => $card->id]) }}">
                                             @csrf
                                             @method('delete')
                                             <x-dropdown-link :href="route('cards.destroy', ['card' => $card->id])"

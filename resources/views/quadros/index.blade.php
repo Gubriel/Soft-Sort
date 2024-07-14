@@ -40,7 +40,7 @@
                                 </x-slot>
                             </x-dropdown>
                         </div>
-                        <p class="mt-4 text-lg text-gray-900"><a href=" {{ route('quadros.show', $quadro->id) }} ">{{ $quadro->nome }}</a></p>
+                        <p class="mt-4 text-lg text-gray-900"><a title="{{ $quadro->descricao }} " href=" {{ route('quadros.show', $quadro->id) }} ">{{ $quadro->nome }}</a></p>
                     </div>
                 </div>
             @endforeach

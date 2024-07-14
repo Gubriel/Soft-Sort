@@ -7,6 +7,7 @@
                 <div class="py-2">
                     <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="nome" id="nome" placeholder="Nome do novo card" required>
                     <input type="hidden" name="posicao" id="posicao" value="1">
+                    <input type="hidden" name="coluna_id" id="coluna_id" value="{{ $coluna_id }}">
                 </div>
                 <label class="pl-3 pt-3">Tipo:</label>
                 <div class="py-2">
@@ -27,8 +28,8 @@
                     <select class="border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" id="unidade" name="unidade">
                         <option value="mm">mm</option>
                         <option value="cm">cm</option>
-                        <option value="m">M</option>
-                        <option value="pol">Pol (")</option>
+                        <option value="M">M</option>
+                        <option value='"'>Pol (")</option>
                     </select>
                     <input class="w-8 h-4 shadow-lg rounded-sm" type="color" id="cor" name="cor" value="#62A0EA">
                 </div>

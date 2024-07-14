@@ -35,8 +35,10 @@ Route::middleware(['auth'])->group(function () {
     // Cards
     Route::get('/cards/create/{coluna_id}', [CardsController::class, 'create'])->name('cards.create');
     Route::post('/cards/create/{coluna_id}', [CardsController::class, 'store'])->name('cards.store');
-    Route::get('/cards/{card}/edit', [CardsController::class, 'edit'])->name('cards.edit');
-    Route::patch('/cards/{card}/edit', [CardsController::class, 'update'])->name('cards.update');
+    Route::get('/cards/{card}/edit/{quadro_id}', [CardsController::class, 'edit'])->name('cards.edit');
+    Route::patch('/cards/{card}/edit/{quadro_id}', [CardsController::class, 'update'])->name('cards.update');
+    Route::post('/cards/{card}/increment', [CardsController::class, 'increment'])->name('cards.increment');
+    Route::post('/cards/{card}/decrement', [CardsController::class, 'decrement'])->name('cards.decrement');
     Route::delete('/cards/delete/{card}', [CardsController::class,'destroy'])->name('cards.destroy');
     //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
