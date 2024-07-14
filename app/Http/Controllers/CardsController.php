@@ -84,9 +84,9 @@ class CardsController extends Controller
     {
         $ncard = Cards::find($card->id);
         $quadroId = $request->input('quadroId');
+        $ncard->tamanho = "";
         $ncard->nome = $request->input('nome');
         $ncard->tipo = $request->input('tipo');
-        $ncard->tamanho = " ";
         $ntama = $request->input('tamanho') . $request->input('unidade');
         $ncard->tamanho = $ntama;
         $ncard->cor = $request->input('cor');

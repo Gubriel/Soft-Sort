@@ -15,11 +15,11 @@
                 </div>
                 <label class="pl-3 pt-3">Quantidade:</label>
                 <div class="py-2">
-                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="qntd" id="qntd" placeholder="Quantidade atual" required>
+                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="number" name="qntd" id="qntd" placeholder="Quantidade atual" required>
                 </div>
                 <label class="pl-3 pt-3">Quantidade crítica:</label>
                 <div class="py-2">
-                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="qntd_limite" id="qntd_limite" placeholder="Quantidade crítica" required>
+                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="number" name="qntd_limite" id="qntd_limite" placeholder="Quantidade crítica" required>
                 </div>
                 <label class="pl-3 pt-4">Tamanho:</label>
                 <label class="pl-24 pt-4">Cor:</label>

@@ -6,7 +6,7 @@
             <div>
                 <label class="pl-3 pt-3">Editar nome:</label>
                 <div class="py-2">
-                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="nome" id="nome" placeholder="{{ $quadro->nome }}" required>
+                    <input class="h-8 border-gray-300 shadow-lg rounded-md focus:border-0 hover:border-gray-400" type="text" name="nome" id="nome" value="{{ $quadro->nome }}" placeholder="{{ $quadro->nome }}" required>
                     <input type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
                 </div>
             </div>
